@@ -115,19 +115,30 @@ h3,
   }
 
   .room-plan-panel .dist-badge-text {
-    font-size: 20px;
+    font-size: 26px;
   }
 
   .room-plan-panel .screen-tag-text {
-    font-size: 18px;
+    font-size: 24px;
+  }
+
+  #room-plan .chart-panel.room-plan-panel {
+    margin-left: -1.35rem;
+    margin-right: -1.35rem;
+    width: calc(100% + 2.7rem);
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
   }
 }
 
-.layout-main,
-.layout-side {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+@media (min-width: 1024px) {
+  .layout-main,
+  .layout-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 }
 
 .card {

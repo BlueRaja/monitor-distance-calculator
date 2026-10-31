@@ -25,7 +25,7 @@ function worldHalfX(state) {
   if (isMobileLayout()) {
     const k = Math.sqrt(state.aspect.w ** 2 + state.aspect.h ** 2);
     const Wmax = (DIAGONAL_MAX_IN * 0.0254 * state.aspect.w) / k;
-    return (Wmax / 2) * 1.03;
+    return (Wmax / 2) * 1.01;
   }
   return WORLD_X;
 }
@@ -70,11 +70,10 @@ export function mountRoomPlan(root, ctx) {
     const h = 600;
     const halfX = worldHalfX(state);
     const mobile = isMobileLayout();
-    const distBadgeW = mobile ? 96 : 64;
-    const distBadgeH = mobile ? 30 : 22;
-    const screenTagW = mobile ? 80 : 56;
-    const screenTagH = mobile ? 26 : 20;
-    const screenTagOffset = mobile ? 26 : 18;
+    const distBadgeW = mobile ? 128 : 64;
+    const distBadgeH = mobile ? 40 : 22;
+    const screenTagW = mobile ? 112 : 56;
+    const screenTagH = mobile ? 36 : 20;
     const diagM = state.diagonalIn * 0.0254;
     const { W } = screenDimensions(diagM, state.aspect);
     const dist = state.distanceM;
@@ -83,6 +82,26 @@ export function mountRoomPlan(root, ctx) {
     const tl = worldToSvg(-halfW, 0, w, h, halfX);
     const tr = worldToSvg(halfW, 0, w, h, halfX);
     const vc = worldToSvg(0, dist, w, h, halfX);
+    const screenTagY = mobile
+      ? tl.sy + 6 + screenTagH / 2 + 10
+      : tl.sy - 18;
+
+    let distBadgeX = vc.sx;
+    let distBadgeY = (tl.sy + vc.sy) / 2;
+    if (mobile) {
+      const screenTagBottom = screenTagY + screenTagH / 2;
+      const tagToDistGap = 26;
+      const minCenterY = screenTagBottom + distBadgeH / 2 + tagToDistGap;
+      const viewerTop = vc.sy - 34;
+      const maxCenterY = viewerTop - distBadgeH / 2 - 8;
+      distBadgeY = minCenterY;
+      if (minCenterY <= maxCenterY) {
+        const midY = (tl.sy + vc.sy) / 2;
+        distBadgeY = Math.max(minCenterY, Math.min(midY, maxCenterY));
+      } else {
+        distBadgeX = vc.sx + 84;
+      }
+    }
 
     const gridLines = [];
     const step = state.units === "metric" ? 0.5 : feetToMeters(1);
@@ -106,14 +125,14 @@ export function mountRoomPlan(root, ctx) {
       <line x1="${tl.sx}" y1="${tl.sy}" x2="${vc.sx}" y2="${vc.sy}" class="fov-ray"/>
       <line x1="${tr.sx}" y1="${tr.sy}" x2="${vc.sx}" y2="${vc.sy}" class="fov-ray"/>
       <line x1="${vc.sx}" y1="${tl.sy}" x2="${vc.sx}" y2="${vc.sy}" class="dist-line"/>
-      <g transform="translate(${vc.sx},${(tl.sy + vc.sy) / 2})">
+      <g transform="translate(${distBadgeX},${distBadgeY})">
         <rect x="${-distBadgeW / 2}" y="${-distBadgeH / 2}" width="${distBadgeW}" height="${distBadgeH}" rx="4" class="dist-badge"/>
-        <text text-anchor="middle" dy="4" class="dist-badge-text">${formatDistance(dist, state.units)}</text>
+        <text text-anchor="middle" dy="${mobile ? 7 : 4}" class="dist-badge-text">${formatDistance(dist, state.units)}</text>
       </g>
       <rect x="${tl.sx}" y="${tl.sy - 6}" width="${tr.sx - tl.sx}" height="12" rx="3" class="screen-bar"/>
-      <g transform="translate(${(tl.sx + tr.sx) / 2}, ${tl.sy - screenTagOffset})">
+      <g transform="translate(${(tl.sx + tr.sx) / 2}, ${screenTagY})">
         <rect x="${-screenTagW / 2}" y="${-screenTagH / 2}" width="${screenTagW}" height="${screenTagH}" rx="4" class="screen-tag"/>
-        <text text-anchor="middle" dy="4" class="screen-tag-text">${formatDiagonal(state.diagonalIn, state.units)}</text>
+        <text text-anchor="middle" dy="${mobile ? 7 : 4}" class="screen-tag-text">${formatDiagonal(state.diagonalIn, state.units)}</text>
       </g>
       <circle cx="${tl.sx}" cy="${tl.sy}" r="12" class="handle" data-handle="left" tabindex="0" role="slider" aria-label="Screen size left"/>
       <circle cx="${tr.sx}" cy="${tl.sy}" r="12" class="handle" data-handle="right" tabindex="0" role="slider" aria-label="Screen size right"/>
@@ -150,11 +169,11 @@ export function mountRoomPlan(root, ctx) {
       endDrag();
       return;
     }
+    const { state } = ctx.getResult();
     const rect = svg.getBoundingClientRect();
     const sx = ((e.clientX - rect.left) / rect.width) * 800;
     const sy = ((e.clientY - rect.top) / rect.height) * 600;
     const { x, y } = svgToWorld(sx, sy, 800, 600, worldHalfX(state));
-    const { state } = ctx.getResult();
 
     if (dragging === "left" || dragging === "right") {
       const halfW = Math.abs(x);

@@ -50,5 +50,8 @@ mountMethodology(document.getElementById("methodology-root"));
 
 window.addEventListener("resize", () => scheduleRender());
 
+const mobileLayoutMq = window.matchMedia("(max-width: 1023px)");
+mobileLayoutMq.addEventListener("change", () => scheduleRender());
+
 computed = computeAll(getState());
 for (const fn of renders) fn();
