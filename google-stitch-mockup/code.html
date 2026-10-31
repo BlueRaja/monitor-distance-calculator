@@ -1,0 +1,529 @@
+<!DOCTYPE html><html lang="en" style=""><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container":"#f0ece4","inverse-on-surface":"#f5f0e8","surface-container-low":"#f5f1ea","background":"#faf6f0","tertiary-fixed":"#f8e0a8","on-surface-variant":"#4a4e4a","surface-tint":"#4a7c59","tertiary-fixed-dim":"#dcc48e","on-tertiary-container":"#554020","outline":"#74796e","on-secondary-fixed-variant":"#4a4538","error":"#b83230","on-primary-fixed":"#002110","surface-container-high":"#eae6de","on-background":"#2e3230","on-primary-fixed-variant":"#2a6038","tertiary":"#705c30","inverse-primary":"#8ecf9e","on-secondary-container":"#5e5548","on-primary-container":"#d8f0de","secondary-fixed-dim":"#d4ccbf","inverse-surface":"#2e3230","secondary":"#6b6358","primary-fixed-dim":"#8ecf9e","on-error-container":"#690005","surface-variant":"#e4e0d8","on-tertiary-fixed":"#221a05","tertiary-container":"#c4a66a","primary-container":"#78a886","outline-variant":"#c4c8bc","on-secondary-fixed":"#1e1a13","secondary-fixed":"#f0e8db","primary-fixed":"#c8e8d0","surface":"#faf6f0","on-tertiary":"#ffffff","on-secondary":"#ffffff","surface-dim":"#dbd7cf","secondary-container":"#f0e8db","on-primary":"#ffffff","error-container":"#ffdad8","surface-bright":"#faf6f0","surface-container-lowest":"#ffffff","on-tertiary-fixed-variant":"#554020","surface-container-highest":"#e4e0d8","primary":"#4a7c59","on-error":"#ffffff","on-surface":"#2e3230"},"borderRadius":{"DEFAULT":"0.5rem","lg":"1rem","xl":"1.5rem","full":"9999px"},"spacing":{},"fontFamily":{"headline":["Literata"],"display":["Literata"],"body":["Nunito Sans"],"label":["Nunito Sans"]},"fontSize":{}}}}</script></head><body class="bg-background font-body text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="sticky top-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-surface-variant/40"><div class="h-16 max-w-7xl mx-auto px-6 flex items-center justify-between"><div class="flex items-center gap-2.5"><span class="w-2.5 h-2.5 rounded-full bg-primary"></span><span class="font-headline font-semibold text-lg tracking-tight text-on-surface">Acuity Studio</span></div><div class="flex items-center gap-1.5 p-1 bg-surface-container rounded-lg" id="res-selector-group"></div></div></header><main class="w-full bg-background min-h-[calc(100vh-4rem)] py-8"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Top-Down Spatial Canvas & Matrix (8 Cols) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- DIAGRAM 1: Spatial Top-Down Canvas -->
+<div class="bg-surface-container-lowest p-6 sm:p-7 rounded-xl border border-surface-variant/50 shadow-sm flex flex-col gap-5">
+<div class="flex items-center justify-between">
+<h2 class="font-headline text-base font-semibold text-on-surface">Spatial Room Plan</h2>
+
+</div>
+<!-- Top-down SVG Canvas Container -->
+<div class="relative w-full aspect-[16/10] bg-surface-container-low rounded-xl overflow-hidden select-none touch-none border border-surface-variant/40" id="spatial-canvas-box">
+<svg class="w-full h-full cursor-default" id="spatial-svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 800 500">
+<defs>
+<pattern height="40" id="spatial-grid" patternUnits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ebe6dd" stroke-width="1"></path>
+</pattern>
+<linearGradient id="coneGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#4a7c59" stop-opacity="0.20"></stop>
+<stop offset="100%" stop-color="#4a7c59" stop-opacity="0.03"></stop>
+</linearGradient>
+</defs>
+<rect fill="url(#spatial-grid)" height="500" width="800"></rect>
+<line stroke="#dbd7cf" stroke-dasharray="3 3" stroke-width="1.5" x1="40" x2="760" y1="50" y2="50"></line>
+<!-- Distance Reference Markers -->
+<g fill="#74796e" font-family="Nunito Sans" font-size="10" opacity="0.5">
+<text text-anchor="end" x="755" y="100">2 ft</text>
+<text text-anchor="end" x="755" y="170">5 ft</text>
+<text text-anchor="end" x="755" y="240">8 ft</text>
+<text text-anchor="end" x="755" y="330">12 ft</text>
+<text text-anchor="end" x="755" y="440">18 ft</text>
+</g>
+<!-- Field of View Viewing Cone -->
+<polygon fill="url(#coneGradient)" id="svg-view-cone" points="252.95454545454544,56 547.0454545454545,56 400,222.30769230769232"></polygon>
+<!-- Screen Edge Lines to Viewer -->
+<line id="svg-ray-left" opacity="0.45" stroke="#4a7c59" stroke-dasharray="3 3" stroke-width="1.5" x1="252.95454545454544" x2="400" y1="56" y2="222.30769230769232"></line>
+<line id="svg-ray-right" opacity="0.45" stroke="#4a7c59" stroke-dasharray="3 3" stroke-width="1.5" x1="540" x2="547.0454545454545" y1="56" y2="222.30769230769232"></line>
+<!-- Distance Measurement Central Line -->
+<line id="svg-dist-line" opacity="0.6" stroke="#6b6358" stroke-dasharray="2 3" stroke-width="1.5" x1="400" x2="400" y1="56" y2="222.30769230769232"></line>
+<!-- Floating Distance Badge -->
+<g id="svg-dist-badge" transform="translate(400, 135.8276923076923)">
+<rect fill="#ffffff" height="22" rx="4" stroke="#e4e0d8" stroke-width="1" width="60" x="-30" y="-11"></rect>
+<text fill="#4a4e4a" font-family="Nunito Sans" font-size="10" font-weight="700" id="svg-dist-text" text-anchor="middle" x="0" y="3">8.0 ft</text>
+</g>
+<!-- THE DISPLAY -->
+<g id="svg-display-group">
+<rect fill="#2e3230" height="12" id="svg-screen-bar" rx="3" width="294.0909090909091" x="252.95454545454544" y="48"></rect>
+<rect fill="#78a886" height="2.5" id="svg-screen-glow" opacity="0.8" width="294.0909090909091" x="252.95454545454544" y="57"></rect>
+<!-- Left Handle -->
+<g class="cursor-ew-resize" id="handle-screen-left" transform="translate(-7.045454545454561, 0)">
+<circle cx="260" cy="54" fill="#faf6f0" filter="drop-shadow(0 2px 4px rgba(46,50,48,0.15))" r="13"></circle>
+<circle cx="260" cy="54" fill="#4a7c59" r="4.5"></circle>
+</g>
+<!-- Right Handle -->
+<g class="cursor-ew-resize" id="handle-screen-right" transform="translate(7.045454545454504, 0)">
+<circle cx="540" cy="54" fill="#faf6f0" filter="drop-shadow(0 2px 4px rgba(46,50,48,0.15))" r="13"></circle>
+<circle cx="540" cy="54" fill="#4a7c59" r="4.5"></circle>
+</g>
+<!-- Display Size Pill Tag -->
+<g id="svg-screen-tag" transform="translate(400, 26)">
+<rect fill="#2e3230" height="20" rx="4" width="62" x="-31" y="-10"></rect>
+<text fill="#ffffff" font-family="Nunito Sans" font-size="10" font-weight="700" id="svg-screen-text" text-anchor="middle" x="0" y="3">65"</text>
+</g>
+</g>
+<!-- THE SEATED PERSON FIGURE (Draggable vertically) -->
+<g class="cursor-ns-resize" id="handle-viewer" transform="translate(400, 222.30769230769232)">
+<!-- Soft halo -->
+<circle cx="0" cy="0" fill="#4a7c59" opacity="0.10" r="28"></circle>
+<!-- Chair cushion background -->
+<rect fill="#e4e0d8" height="26" opacity="0.85" rx="7" stroke="#dbd7cf" stroke-width="1" width="38" x="-19" y="-6"></rect>
+<!-- Shoulders/Torso (curved contour) -->
+<path d="M -16,10 C -16,-2 -11,-8 0,-8 C 11,-8 16,-2 16,10 Z" fill="#6b6358"></path>
+<!-- Head -->
+<ellipse cx="0" cy="-3" fill="#faf6f0" rx="8" ry="9" stroke="#4a4e4a" stroke-width="1.2"></ellipse>
+<!-- Directional Gaze indicator facing UP toward screen -->
+<polygon fill="#4a7c59" points="0,-16 -4,-11 4,-11"></polygon>
+</g>
+</svg>
+</div>
+</div>
+<!-- DIAGRAM 2: Threshold Matrix Chart -->
+<div class="bg-surface-container-lowest p-6 sm:p-7 rounded-xl border border-surface-variant/50 shadow-sm flex flex-col gap-5">
+<div class="flex flex-wrap items-center justify-between gap-3">
+<h2 class="font-headline text-base font-semibold text-on-surface">Acuity Threshold Matrix</h2>
+<div class="flex items-center gap-3 text-xs font-label text-on-surface-variant">
+
+
+
+</div>
+</div>
+<!-- Chart Canvas -->
+<div class="relative w-full aspect-[16/9] bg-surface-container-low rounded-xl overflow-hidden touch-none select-none border border-surface-variant/40" id="chart-canvas-box">
+<svg class="w-full h-full cursor-crosshair" id="matrix-svg" viewBox="0 0 700 390">
+<!-- Shading zones -->
+<polygon fill="#f8e0a8" id="zone-8k" opacity="0.25" points="70,340 70,324 660,238 660,340"></polygon>
+<polygon fill="#d8f0de" id="zone-4k" opacity="0.35" points="70,340 70,309 660,140 660,340"></polygon>
+<polygon fill="#eae6de" id="zone-1080p" opacity="0.30" points="70,340 70,278 660,30 660,340"></polygon>
+<!-- Curve Lines -->
+<path d="M 70,278 L 660,30" stroke="#8a8377" stroke-dasharray="4 4" stroke-width="1.8"></path>
+<text fill="#6b6358" font-family="Nunito Sans" font-size="10" font-weight="600" text-anchor="end" x="645" y="44">1080p</text>
+<path d="M 70,309 L 660,140" stroke="#4a7c59" stroke-width="2.2"></path>
+<text fill="#2a6038" font-family="Nunito Sans" font-size="10" font-weight="700" text-anchor="end" x="645" y="156">4K (60 PPD)</text>
+<path d="M 70,324 L 660,238" stroke="#c4a66a" stroke-dasharray="3 3" stroke-width="1.8"></path>
+<text fill="#705c30" font-family="Nunito Sans" font-size="10" font-weight="600" text-anchor="end" x="645" y="252">8K</text>
+<!-- Axes -->
+<line stroke="#74796e" stroke-width="1.2" x1="70" x2="70" y1="30" y2="340"></line>
+<line stroke="#74796e" stroke-width="1.2" x1="70" x2="660" y1="340" y2="340"></line>
+<!-- Y Axis Ticks -->
+<g fill="#74796e" font-family="Nunito Sans" font-size="10" text-anchor="end">
+<text x="62" y="344">0 ft</text>
+<line stroke="#74796e" x1="66" x2="70" y1="340" y2="340"></line>
+<text x="62" y="265">5 ft</text>
+<line stroke="#74796e" x1="66" x2="70" y1="262" y2="262"></line>
+<text x="62" y="185">10 ft</text>
+<line stroke="#74796e" x1="66" x2="70" y1="184" y2="184"></line>
+<text x="62" y="107">15 ft</text>
+<line stroke="#74796e" x1="66" x2="70" y1="106" y2="106"></line>
+<text x="62" y="34">20 ft</text>
+<line stroke="#74796e" x1="66" x2="70" y1="30" y2="30"></line>
+</g>
+<!-- X Axis Ticks -->
+<g fill="#74796e" font-family="Nunito Sans" font-size="10" text-anchor="middle">
+<text x="70" y="358">20"</text>
+<line stroke="#74796e" x1="70" x2="70" y1="340" y2="344"></line>
+<text x="204" y="358">45"</text>
+<line stroke="#74796e" x1="204" x2="204" y1="340" y2="344"></line>
+<text x="338" y="358">70"</text>
+<line stroke="#74796e" x1="338" x2="338" y1="340" y2="344"></line>
+<text x="472" y="358">95"</text>
+<line stroke="#74796e" x1="472" x2="472" y1="340" y2="344"></line>
+<text x="606" y="358">120"</text>
+<line stroke="#74796e" x1="606" x2="606" y1="340" y2="344"></line>
+<text x="660" y="358">130"</text>
+<line stroke="#74796e" x1="660" x2="660" y1="340" y2="344"></line>
+</g>
+<!-- Axis Labels -->
+<text fill="#4a4e4a" font-family="Nunito Sans" font-size="10" font-weight="600" text-anchor="middle" x="365" y="378">Screen Diagonal</text>
+<text fill="#4a4e4a" font-family="Nunito Sans" font-size="10" font-weight="600" text-anchor="middle" transform="translate(22, 185) rotate(-90)">Distance</text>
+<!-- Crosshairs -->
+<line id="crosshair-x" opacity="0.5" stroke="#4a7c59" stroke-dasharray="3 3" stroke-width="1.2" x1="70" x2="311.3636363636364" y1="216" y2="216"></line>
+<line id="crosshair-y" opacity="0.5" stroke="#4a7c59" stroke-dasharray="3 3" stroke-width="1.2" x1="311.3636363636364" x2="311.3636363636364" y1="340" y2="216"></line>
+<!-- Interactive Point Marker -->
+<g class="cursor-grab active:cursor-grabbing" id="chart-marker" transform="translate(311.3636363636364, 216)">
+<circle cx="0" cy="0" fill="#4a7c59" opacity="0.15" r="16"></circle>
+<circle cx="0" cy="0" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(46,50,48,0.2))" r="9"></circle>
+<circle cx="0" cy="0" fill="#4a7c59" r="4.5"></circle>
+<!-- Tag -->
+<g id="chart-marker-tag" transform="translate(0, -20)">
+<rect fill="#2e3230" height="20" rx="4" width="76" x="-38" y="-10"></rect>
+<text fill="#ffffff" font-family="Nunito Sans" font-size="9.5" font-weight="700" id="chart-marker-label" text-anchor="middle" x="0" y="3">65" @ 8.0 ft</text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+<!-- Right Column: Minimalist Analytical Sidebar (4 Cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- CARD 1: Retinal Benefit Gauge -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-surface-variant/50 shadow-sm flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<span class="text-xs font-label uppercase tracking-wider text-on-surface-variant font-semibold">Visual Acuity</span>
+<span class="px-2.5 py-0.5 rounded-full text-xs font-label font-semibold bg-tertiary-fixed text-on-tertiary-fixed-variant" id="ppd-badge-status">Indistinguishable</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-baseline gap-2">
+<span class="font-headline text-5xl font-bold text-on-surface tracking-tight" id="stat-ppd-value">233.6</span>
+<span class="text-base font-label font-semibold text-on-surface-variant">PPD</span>
+</div>
+<span class="text-xs font-label text-on-surface-variant mt-0.5">Pixels Per Degree of Visual Angle</span>
+</div>
+<!-- Gauge Track -->
+<div class="space-y-1.5 pt-1">
+<div class="flex justify-between text-xs font-label text-on-surface-variant">
+<span class="">Baseline Limit</span>
+<span class="font-semibold text-on-surface">60 PPD (20/20)</span>
+</div>
+<div class="relative w-full h-3 bg-surface-container rounded-full overflow-hidden flex">
+<div class="h-full bg-secondary-fixed-dim/60 w-[45%]"></div>
+<div class="h-full bg-primary-container w-[35%]"></div>
+<div class="h-full bg-tertiary-fixed-dim/70 w-[20%]"></div>
+</div>
+<!-- Gauge Needle Pointer -->
+<div class="relative w-full h-3.5">
+<div class="absolute -top-1 w-3 h-3 -ml-1.5 transition-all duration-150" id="gauge-needle" style="left: 98%;">
+<div class="w-3 h-3 bg-on-surface rotate-45 rounded-xs shadow-xs"></div>
+</div>
+</div>
+<div class="flex justify-between text-[11px] font-label text-on-surface-variant pt-0.5">
+<span class="">Pixelated</span>
+<span class="font-semibold text-primary">20/20 Optimal</span>
+<span class="">Indistinguishable</span>
+</div>
+</div>
+</div>
+<!-- CARD 2: Distance Cutoffs -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-surface-variant/50 shadow-sm flex flex-col gap-4">
+<h3 class="font-headline text-base font-semibold text-on-surface">Distance Cutoffs for <span id="cutoff-diag-title" class="">65"</span></h3>
+<div class="flex flex-col gap-2.5 font-label">
+<!-- 1080p Row -->
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-on-surface">1080p</span>
+<span class="text-xs text-on-surface-variant">Cutoff: <strong class="text-on-surface font-medium" id="cutoff-dist-1080">8.2 ft</strong></span>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-primary-fixed text-on-primary-fixed-variant" id="badge-status-1080">Optimal Acuity</span>
+</div>
+<!-- 1440p Row -->
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-on-surface">1440p</span>
+<span class="text-xs text-on-surface-variant">Cutoff: <strong class="text-on-surface font-medium" id="cutoff-dist-1440">6.0 ft</strong></span>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-medium bg-surface-container text-on-surface-variant/80" id="badge-status-1440">Indistinguishable</span>
+</div>
+<!-- 4K Row -->
+<div class="p-3 rounded-lg bg-primary-fixed/40 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-on-primary-fixed">4K UHD</span>
+<span class="text-xs text-on-primary-fixed-variant">Cutoff: <strong class="text-on-surface font-medium" id="cutoff-dist-2160">3.8 ft</strong></span>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-medium bg-surface-container text-on-surface-variant/80" id="badge-status-2160">Indistinguishable</span>
+</div>
+<!-- 8K Row -->
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-on-surface">8K</span>
+<span class="text-xs text-on-surface-variant">Cutoff: <strong class="text-on-surface font-medium" id="cutoff-dist-4320">1.2 ft</strong></span>
+</div>
+<span class="px-2 py-0.5 rounded text-[11px] font-medium bg-surface-container text-on-surface-variant/80" id="badge-status-4320">Indistinguishable</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main><script>
+    (function initAcuitySimulator() {
+      // Core State
+      let state = {
+        diagInches: 65,      // 20" - 130"
+        distFeet: 8.0,       // 0.5 - 20.0 ft
+        resHeight: 2160,     // 1080, 1440, 2160, 4320
+        resWidth: 3840
+      };
+
+      const resMap = {
+        1080: { w: 1920, h: 1080, label: '1080p' },
+        1440: { w: 2560, h: 1440, label: '1440p' },
+        2160: { w: 3840, h: 2160, label: '4K UHD' },
+        4320: { w: 7680, h: 4320, label: '8K UHD' }
+      };
+
+      // Elements
+      const spatialSvg = document.getElementById('spatial-svg');
+      const screenBar = document.getElementById('svg-screen-bar');
+      const screenGlow = document.getElementById('svg-screen-glow');
+      const handleScreenLeft = document.getElementById('handle-screen-left');
+      const handleScreenRight = document.getElementById('handle-screen-right');
+      const handleViewer = document.getElementById('handle-viewer');
+      const viewCone = document.getElementById('svg-view-cone');
+      const rayLeft = document.getElementById('svg-ray-left');
+      const rayRight = document.getElementById('svg-ray-right');
+      const distLine = document.getElementById('svg-dist-line');
+      const distBadge = document.getElementById('svg-dist-badge');
+      const distText = document.getElementById('svg-dist-text');
+      const screenText = document.getElementById('svg-screen-text');
+
+      const spatialReadoutDiag = document.getElementById('spatial-readout-diag');
+      const spatialReadoutDist = document.getElementById('spatial-readout-dist');
+
+      const matrixSvg = document.getElementById('matrix-svg');
+      const chartMarker = document.getElementById('chart-marker');
+      const chartMarkerLabel = document.getElementById('chart-marker-label');
+      const crosshairX = document.getElementById('crosshair-x');
+      const crosshairY = document.getElementById('crosshair-y');
+
+      const statPpdValue = document.getElementById('stat-ppd-value');
+      const gaugeNeedle = document.getElementById('gauge-needle');
+      const ppdBadgeStatus = document.getElementById('ppd-badge-status');
+      const cutoffDiagTitle = document.getElementById('cutoff-diag-title');
+
+      const cutoff1080 = document.getElementById('cutoff-dist-1080');
+      const cutoff1440 = document.getElementById('cutoff-dist-1440');
+      const cutoff2160 = document.getElementById('cutoff-dist-2160');
+      const cutoff4320 = document.getElementById('cutoff-dist-4320');
+
+      const badge1080 = document.getElementById('badge-status-1080');
+      const badge1440 = document.getElementById('badge-status-1440');
+      const badge2160 = document.getElementById('badge-status-2160');
+      const badge4320 = document.getElementById('badge-status-4320');
+
+      // Math Helpers
+      function getScreenWidthInches(diag) {
+        return diag * 0.8715755;
+      }
+
+      function computeMetrics() {
+        const screenWidthIn = getScreenWidthInches(state.diagInches);
+        const distIn = state.distFeet * 12;
+        const radFov = 2 * Math.atan(screenWidthIn / (2 * distIn));
+        const degFov = radFov * (180 / Math.PI);
+        const ppd = state.resWidth / degFov;
+
+        function calcCutoffDist(w) {
+          const targetFovDeg = w / 60;
+          const halfAngleRad = (targetFovDeg * Math.PI) / 360;
+          const distInches = (screenWidthIn / 2) / Math.tan(halfAngleRad);
+          return Math.max(0.5, distInches / 12);
+        }
+
+        return {
+          fov: degFov,
+          ppd: ppd,
+          cutoff1080: calcCutoffDist(1920),
+          cutoff1440: calcCutoffDist(2560),
+          cutoff2160: calcCutoffDist(3840),
+          cutoff4320: calcCutoffDist(7680)
+        };
+      }
+
+      function syncViews() {
+        const metrics = computeMetrics();
+
+        // 1. Text Readouts
+        spatialReadoutDiag.textContent = state.diagInches + '"';
+        spatialReadoutDist.textContent = state.distFeet.toFixed(1) + ' ft';
+        cutoffDiagTitle.textContent = state.diagInches + '"';
+
+        // 2. Spatial Top-Down Canvas
+        const widthPx = 110 + ((state.diagInches - 20) / (130 - 20)) * 450;
+        const leftX = 400 - (widthPx / 2);
+        const rightX = 400 + (widthPx / 2);
+        const viewerY = 80 + ((state.distFeet - 0.5) / (20 - 0.5)) * 370;
+
+        screenBar.setAttribute('x', leftX);
+        screenBar.setAttribute('width', widthPx);
+        screenGlow.setAttribute('x', leftX);
+        screenGlow.setAttribute('width', widthPx);
+
+        handleScreenLeft.setAttribute('transform', `translate(${leftX - 260}, 0)`);
+        handleScreenRight.setAttribute('transform', `translate(${rightX - 540}, 0)`);
+        handleViewer.setAttribute('transform', `translate(400, ${viewerY})`);
+
+        viewCone.setAttribute('points', `${leftX},56 ${rightX},56 400,${viewerY}`);
+        rayLeft.setAttribute('x1', leftX);
+        rayLeft.setAttribute('y2', viewerY);
+        rayRight.setAttribute('x2', rightX);
+        rayRight.setAttribute('y2', viewerY);
+
+        distLine.setAttribute('y2', viewerY);
+        const midY = 56 + (viewerY - 56) * 0.48;
+        distBadge.setAttribute('transform', `translate(400, ${midY})`);
+        distText.textContent = `${state.distFeet.toFixed(1)} ft`;
+        screenText.textContent = `${state.diagInches}"`;
+
+        // 3. Matrix Chart
+        const chartX = 70 + ((state.diagInches - 20) / (130 - 20)) * 590;
+        const chartY = 340 - (state.distFeet / 20.0) * 310;
+
+        chartMarker.setAttribute('transform', `translate(${chartX}, ${chartY})`);
+        chartMarkerLabel.textContent = `${state.diagInches}" @ ${state.distFeet.toFixed(1)} ft`;
+
+        crosshairX.setAttribute('x2', chartX);
+        crosshairX.setAttribute('y1', chartY);
+        crosshairX.setAttribute('y2', chartY);
+
+        crosshairY.setAttribute('x1', chartX);
+        crosshairY.setAttribute('x2', chartX);
+        crosshairY.setAttribute('y2', chartY);
+
+        // 4. Acuity Metrics & Gauge
+        const ppdVal = metrics.ppd.toFixed(1);
+        statPpdValue.textContent = ppdVal;
+
+        let gaugePct = ((metrics.ppd - 20) / (100 - 20)) * 100;
+        gaugePct = Math.max(2, Math.min(98, gaugePct));
+        gaugeNeedle.style.left = gaugePct + '%';
+
+        if (metrics.ppd < 50) {
+          ppdBadgeStatus.textContent = 'Pixelated';
+          ppdBadgeStatus.className = 'px-2.5 py-0.5 rounded-full text-xs font-label font-semibold bg-surface-container text-secondary';
+        } else if (metrics.ppd <= 75) {
+          ppdBadgeStatus.textContent = 'Optimal Acuity';
+          ppdBadgeStatus.className = 'px-2.5 py-0.5 rounded-full text-xs font-label font-semibold bg-primary text-on-primary';
+        } else {
+          ppdBadgeStatus.textContent = 'Indistinguishable';
+          ppdBadgeStatus.className = 'px-2.5 py-0.5 rounded-full text-xs font-label font-semibold bg-tertiary-fixed text-on-tertiary-fixed-variant';
+        }
+
+        // 5. Cutoffs
+        cutoff1080.textContent = metrics.cutoff1080.toFixed(1) + ' ft';
+        cutoff1440.textContent = metrics.cutoff1440.toFixed(1) + ' ft';
+        cutoff2160.textContent = metrics.cutoff2160.toFixed(1) + ' ft';
+        cutoff4320.textContent = metrics.cutoff4320.toFixed(1) + ' ft';
+
+        function updateRowBadge(badge, cutoffDist) {
+          if (state.distFeet > cutoffDist * 1.3) {
+            badge.textContent = 'Indistinguishable';
+            badge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-surface-container text-on-surface-variant/80';
+          } else if (state.distFeet >= cutoffDist * 0.8 && state.distFeet <= cutoffDist * 1.3) {
+            badge.textContent = 'Optimal Acuity';
+            badge.className = 'px-2 py-0.5 rounded text-[11px] font-semibold bg-primary-fixed text-on-primary-fixed-variant';
+          } else {
+            badge.textContent = 'Full Detail Visible';
+            badge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-surface-container text-on-surface-variant';
+          }
+        }
+
+        updateRowBadge(badge1080, metrics.cutoff1080);
+        updateRowBadge(badge1440, metrics.cutoff1440);
+        updateRowBadge(badge2160, metrics.cutoff2160);
+        updateRowBadge(badge4320, metrics.cutoff4320);
+      }
+
+      // Pointer Event Utilities
+      function getSvgPoint(svg, evt) {
+        const pt = svg.createSVGPoint();
+        const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+        const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+        pt.x = clientX;
+        pt.y = clientY;
+        return pt.matrixTransform(svg.getScreenCTM().inverse());
+      }
+
+      // Dragging on Spatial Plan
+      let dragMode = null;
+
+      handleScreenLeft.addEventListener('pointerdown', (e) => {
+        dragMode = 'screen-left';
+        handleScreenLeft.setPointerCapture(e.pointerId);
+        e.stopPropagation();
+      });
+
+      handleScreenRight.addEventListener('pointerdown', (e) => {
+        dragMode = 'screen-right';
+        handleScreenRight.setPointerCapture(e.pointerId);
+        e.stopPropagation();
+      });
+
+      handleViewer.addEventListener('pointerdown', (e) => {
+        dragMode = 'viewer';
+        handleViewer.setPointerCapture(e.pointerId);
+        e.stopPropagation();
+      });
+
+      spatialSvg.addEventListener('pointermove', (e) => {
+        if (!dragMode) return;
+        const pt = getSvgPoint(spatialSvg, e);
+
+        if (dragMode === 'screen-left' || dragMode === 'screen-right') {
+          const halfW = Math.max(55, Math.min(280, Math.abs(pt.x - 400)));
+          const widthPx = halfW * 2;
+          const newDiag = Math.round(20 + ((widthPx - 110) / 450) * 110);
+          state.diagInches = Math.max(20, Math.min(130, newDiag));
+          syncViews();
+        } else if (dragMode === 'viewer') {
+          const clampedY = Math.max(80, Math.min(450, pt.y));
+          const newDist = 0.5 + ((clampedY - 80) / 370) * 19.5;
+          state.distFeet = Math.max(0.5, Math.min(20.0, Math.round(newDist * 2) / 2));
+          syncViews();
+        }
+      });
+
+      function stopSpatialDrag() {
+        dragMode = null;
+      }
+      spatialSvg.addEventListener('pointerup', stopSpatialDrag);
+      spatialSvg.addEventListener('pointercancel', stopSpatialDrag);
+
+      // Dragging on Matrix Chart
+      let chartDragging = false;
+
+      function updateChartFromEvent(e) {
+        const pt = getSvgPoint(matrixSvg, e);
+        const clampedX = Math.max(70, Math.min(660, pt.x));
+        const clampedY = Math.max(30, Math.min(340, pt.y));
+
+        const diag = Math.round(20 + ((clampedX - 70) / 590) * 110);
+        const dist = ((340 - clampedY) / 310) * 20.0;
+        
+        state.diagInches = Math.max(20, Math.min(130, diag));
+        state.distFeet = Math.max(0.5, Math.min(20.0, Math.round(dist * 2) / 2));
+        syncViews();
+      }
+
+      chartMarker.addEventListener('pointerdown', (e) => {
+        chartDragging = true;
+        chartMarker.setPointerCapture(e.pointerId);
+        e.stopPropagation();
+      });
+
+      matrixSvg.addEventListener('pointerdown', (e) => {
+        chartDragging = true;
+        updateChartFromEvent(e);
+      });
+
+      matrixSvg.addEventListener('pointermove', (e) => {
+        if (!chartDragging) return;
+        updateChartFromEvent(e);
+      });
+
+      function stopChartDrag() {
+        chartDragging = false;
+      }
+      matrixSvg.addEventListener('pointerup', stopChartDrag);
+      matrixSvg.addEventListener('pointercancel', stopChartDrag);
+
+      // Resolution Switcher
+      const resButtons = document.querySelectorAll('.res-btn');
+      resButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const res = parseInt(btn.getAttribute('data-res'), 10);
+          state.resHeight = res;
+          state.resWidth = resMap[res].w;
+
+          resButtons.forEach(b => {
+            b.className = 'res-btn px-3 py-1 rounded text-xs font-label font-medium transition-all text-on-surface-variant hover:text-on-surface';
+          });
+          btn.className = 'res-btn px-3 py-1 rounded text-xs font-label font-semibold transition-all bg-primary text-on-primary shadow-xs';
+          syncViews();
+        });
+      });
+
+      // Initialize
+      syncViews();
+    })();
+  </script>
+
+</body></html>

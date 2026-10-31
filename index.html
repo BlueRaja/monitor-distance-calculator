@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Monitor Acuity Calculator — Display resolution calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,600;7..72,700&family=Nunito+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "d3": "https://cdn.jsdelivr.net/npm/d3@7/+esm"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <h1 class="site-title">Monitor Acuity Calculator</h1>
+        <p class="site-tagline">When does more resolution matter?</p>
+      </div>
+    </header>
+
+    <main class="layout">
+      <div class="layout-main">
+        <section class="card" id="room-plan"></section>
+        <section class="card" id="matrix-chart"></section>
+      </div>
+      <aside class="layout-side">
+        <section class="card" id="cutoff-card"></section>
+        <section class="card" id="acuity-card"></section>
+        <div id="advanced-panel"></div>
+      </aside>
+      <div id="methodology-root" class="layout-span"></div>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
