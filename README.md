@@ -1,15 +1,11 @@
 # Monitor Acuity Calculator
 
-Interactive calculator for display resolution vs viewing distance. Two linked charts (room plan and threshold matrix) update shared screen size and distance. Verdicts combine the Ashraf et al. population resolution model with Barten SQRI upgrade sizing.
+This calculator was created to answer a practical question about monitors/televisions: for a given screen size and viewing distance, what screen resolutions can you actually tell apart? 
 
 ## Run locally
 
-ES modules require HTTP:
-
 ```bash
 npx serve .
-# or
-python -m http.server 8080
 ```
 
 Open the URL shown (e.g. `http://localhost:3000`).
@@ -29,8 +25,6 @@ npm install
 npm run build
 npx serve dist
 ```
-
-On Windows, use the same commands in PowerShell or Command Prompt.
 
 ## Structure
 
