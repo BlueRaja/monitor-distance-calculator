@@ -18,7 +18,7 @@ npm test
 
 ## Production build
 
-Bundles application JS (including D3) into one file. Output is written to `dist/` for static hosting:
+Bundles application JS (excluding D3) into one file. Output is written to `dist/` for static hosting:
 
 ```bash
 npm install
@@ -29,7 +29,7 @@ npx serve dist
 ## Structure
 
 - `js/physics/` — geometry, population model, CSF, MTF, SQRI, verdict (no DOM)
-- `js/ui/` — charts and cards (D3 bundled in production via `npm run build`)
+- `js/ui/` — charts and cards
 - `js/data/` — resolution presets and references
 
 Methodology and numbered references are at the bottom of the page.

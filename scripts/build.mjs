@@ -13,6 +13,7 @@ await esbuild.build({
   bundle: true,
   minify: true,
   format: "esm",
+  external: ["d3"],
   outfile: join(dist, "app.js"),
   logLevel: "info",
 });
@@ -20,7 +21,6 @@ await esbuild.build({
 cpSync(join(root, "css"), join(dist, "css"), { recursive: true });
 
 let html = readFileSync(join(root, "index.html"), "utf8");
-html = html.replace(/<script type="importmap">[\s\S]*?<\/script>\s*/i, "");
 html = html.replace('src="js/main.js"', 'src="app.js"');
 writeFileSync(join(dist, "index.html"), html);
 
