@@ -58,6 +58,34 @@ h3,
   flex: 1;
 }
 
+.how-to {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 0.25rem;
+}
+
+.how-to .methodology-details {
+  margin-top: 0;
+}
+
+@media (min-width: 1024px) {
+  .how-to .methodology-details {
+    width: calc((100% - 1.5rem) * 2 / 3);
+  }
+}
+
+.how-to-steps {
+  margin: 0;
+  padding-left: 1.35rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.how-to-steps li + li {
+  margin-top: 0.35rem;
+}
+
 .layout {
   max-width: 1200px;
   margin: 0 auto;
@@ -129,6 +157,16 @@ h3,
     border-left: none;
     border-right: none;
     border-radius: 0;
+  }
+
+  .handle-hit {
+    fill: transparent;
+    stroke: none;
+    cursor: ew-resize;
+  }
+
+  .handle-hit--viewer {
+    cursor: ns-resize;
   }
 }
 
@@ -732,4 +770,23 @@ h3,
   color: var(--muted);
   font-size: 0.85rem;
   border-top: 1px solid var(--border);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+.site-footer-sep {
+  margin: 0 0.5rem;
+  color: var(--border);
 }

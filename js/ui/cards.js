@@ -103,6 +103,34 @@ export function mountRoomPlan(root, ctx) {
       }
     }
 
+    const handleHitR = mobile ? 38 : 0;
+    const viewerHitR = mobile ? 48 : 0;
+
+    const leftHandle = mobile
+      ? `<g data-handle="left" tabindex="0" role="slider" aria-label="Screen size left">
+          <circle cx="${tl.sx}" cy="${tl.sy}" r="${handleHitR}" class="handle-hit"/>
+          <circle cx="${tl.sx}" cy="${tl.sy}" r="12" class="handle handle-visual" pointer-events="none"/>
+        </g>`
+      : `<circle cx="${tl.sx}" cy="${tl.sy}" r="12" class="handle" data-handle="left" tabindex="0" role="slider" aria-label="Screen size left"/>`;
+    const rightHandle = mobile
+      ? `<g data-handle="right" tabindex="0" role="slider" aria-label="Screen size right">
+          <circle cx="${tr.sx}" cy="${tr.sy}" r="${handleHitR}" class="handle-hit"/>
+          <circle cx="${tr.sx}" cy="${tr.sy}" r="12" class="handle handle-visual" pointer-events="none"/>
+        </g>`
+      : `<circle cx="${tr.sx}" cy="${tr.sy}" r="12" class="handle" data-handle="right" tabindex="0" role="slider" aria-label="Screen size right"/>`;
+    const viewerGraphic = mobile
+      ? `<circle r="${viewerHitR}" class="handle-hit handle-hit--viewer"/>
+         <g pointer-events="none">
+           <circle r="28" class="viewer-halo"/>
+           <ellipse rx="18" ry="10" class="viewer-shoulders"/>
+           <circle cy="-4" r="8" class="viewer-head"/>
+           <polygon points="0,-18 -4,-12 4,-12" class="viewer-gaze"/>
+         </g>`
+      : `<circle r="28" class="viewer-halo"/>
+         <ellipse rx="18" ry="10" class="viewer-shoulders"/>
+         <circle cy="-4" r="8" class="viewer-head"/>
+         <polygon points="0,-18 -4,-12 4,-12" class="viewer-gaze"/>`;
+
     const gridLines = [];
     const step = state.units === "metric" ? 0.5 : feetToMeters(1);
     for (let y = 0; y <= WORLD_Y1; y += step) {
@@ -134,13 +162,10 @@ export function mountRoomPlan(root, ctx) {
         <rect x="${-screenTagW / 2}" y="${-screenTagH / 2}" width="${screenTagW}" height="${screenTagH}" rx="4" class="screen-tag"/>
         <text text-anchor="middle" dy="${mobile ? 7 : 4}" class="screen-tag-text">${formatDiagonal(state.diagonalIn, state.units)}</text>
       </g>
-      <circle cx="${tl.sx}" cy="${tl.sy}" r="12" class="handle" data-handle="left" tabindex="0" role="slider" aria-label="Screen size left"/>
-      <circle cx="${tr.sx}" cy="${tl.sy}" r="12" class="handle" data-handle="right" tabindex="0" role="slider" aria-label="Screen size right"/>
+      ${leftHandle}
+      ${rightHandle}
       <g class="viewer" transform="translate(${vc.sx}, ${vc.sy})" data-handle="viewer" tabindex="0" role="slider" aria-label="Viewing distance">
-        <circle r="28" class="viewer-halo"/>
-        <ellipse rx="18" ry="10" class="viewer-shoulders"/>
-        <circle cy="-4" r="8" class="viewer-head"/>
-        <polygon points="0,-18 -4,-12 4,-12" class="viewer-gaze"/>
+        ${viewerGraphic}
       </g>
     `;
   }
@@ -279,7 +304,7 @@ export function mountCutoffList(root, ctx) {
 
   function render() {
     const { state, computed } = ctx.getResult();
-    title.textContent = "Resolution";
+    title.textContent = "Resolutions";
     rowsEl.innerHTML = computed.rows
       .map((row, index) => {
         const selected = row.id === state.selectedRowId;
